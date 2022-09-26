@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Client\CategoryController as ClientCategory;
 
 /*
 |--------------------------------------------------------------------------
@@ -16,4 +18,24 @@ use Illuminate\Support\Facades\Route;
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
+});
+
+
+
+
+/** route for admin */
+Route::prefix('admin')->group(function () {
+    Route::apiResource('category',CategoryController::class);
+});
+
+
+
+
+
+/** route phia nguoi dung */
+Route::group([
+    'namespace' => 'category',
+    'prefix' => 'category'
+], function (){
+    Route::get('/', [ClientCategory::class, 'index']);
 });
