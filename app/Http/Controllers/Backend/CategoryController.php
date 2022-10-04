@@ -25,12 +25,19 @@ class CategoryController extends Controller
         return new JsonResource($cate);
     }
 
-    public function update(Request $request, Category $cate)
+    public function update(Request $request,  $id)
     {
-//        dd($cate);
-        $cate->update($request->all());
-
-        return new JsonResource($cate);
+        $input = $request->all();
+        $category = Category::find($id);
+        $category->name = $input['name'];
+        $category->status = $input['status'];
+        $category->image = $input['image'];
+        $category->save();
+        return response()->json([
+            "success" => true,
+            "message" => "Category updated successfully.",
+            "data" => $category
+        ]);
     }
 
     public function destroy(Category $cate)
