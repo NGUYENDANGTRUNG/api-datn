@@ -19,7 +19,7 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-//        dd($request->all());
+
         $cate = Category::create($request->all());
 
         return new JsonResource($cate);

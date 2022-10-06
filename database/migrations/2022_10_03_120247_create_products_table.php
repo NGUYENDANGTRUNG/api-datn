@@ -18,7 +18,7 @@ class CreateProductsTable extends Migration
             $table->string('name');
             $table->boolean('status');
             $table->string('image');
-            $table->tinyText(' desc');
+            $table->tinyText('desc');
             $table->double('price');
             $table->double('sale_price');
             $table->integer('quantity');
